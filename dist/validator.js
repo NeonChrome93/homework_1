@@ -20,7 +20,6 @@ const createVideoValidation = (title, author, resolution) => {
             field: 'availableResolutions'
         });
     }
-    console.log(exports.isEqual);
     //....
     // ....
     if (errors.length > 0)

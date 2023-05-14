@@ -30,7 +30,7 @@ export const createVideoValidation = (title: any, author: any, resolution: any) 
 
 
 
-    console.log(isEqual);
+
 
     //....
     // ....
