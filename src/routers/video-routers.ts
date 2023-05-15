@@ -78,14 +78,21 @@ videoRouters.put('/:id', (req: Request, res: Response) => {
     }
 })
 
+// params, query, body, headers
+
 videoRouters.delete('/:id', (req: Request, res: Response) => {
-    for (let i = 0; videos.length > i; i++) {
-        if (videos[i].id === +req.params.id) {
-            videos.splice(i, 1)
-            res.sendStatus(204)
-            return;
-        } else res.sendStatus(404)
-    }
+    const video = videos.find(v => v.id === +req.params.id)
+    if(!video) return res.sendStatus(404)
+    videos = videos.filter(v => v.id !== +req.params.id)
+    return res.sendStatus(204)
+
+    // for (let i = 0; videos.length > i; i++) {
+    //     if (videos[i].id === +req.params.id) {
+    //         videos.splice(i, 1)
+    //         res.sendStatus(204)
+    //         return;
+    //     } else res.sendStatus(404)
+    // }
 })
 
 //второй делит по всем видосам
