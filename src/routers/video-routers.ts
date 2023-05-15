@@ -13,7 +13,7 @@ export type VideoType = {
 
 }
 
-export const availableResolutions = [ '144', '240', '360', '480', '720', '1080', '1440', '2160' ];
+export const availableResolutions = [ 'P144', 'P240', 'P360', 'P480', 'P720', 'P1080', 'P1440', 'P2160' ];
 
 export let videos: VideoType[] = []
 

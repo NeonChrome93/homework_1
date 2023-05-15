@@ -1,7 +1,7 @@
 import {availableResolutions} from "./routers/video-routers";
 
-export const isEqual = (arr1: string[], arr2: string[]) => {
-    return arr1.every((value) => arr2.includes(value))
+export const isEqual = (arr1: string[]) => {
+    return arr1.every((value) => availableResolutions.includes(value))
 }
 
 type ValidationErrorType = {
@@ -19,21 +19,20 @@ export const createVideoValidation = (title: any, author: any, resolution: any) 
         })
     }
 
-    if(!isEqual(resolution, availableResolutions)) {
+    if (!author || typeof author !== 'string' || !author.trim() || author.length > 20) {
+        errors.push({
+            message: 'invalid author',
+            field: 'author'
+        })
+    }
+
+    if(!isEqual(resolution)) {
         errors.push({
             message: 'invalid availableResolutions',
             field: 'availableResolutions'
         })
     }
 
-
-
-
-
-
-
-    //....
-    // ....
     if (errors.length > 0) return errors
     return null
 }

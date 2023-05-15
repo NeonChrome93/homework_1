@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createVideoValidation = exports.isEqual = void 0;
 const video_routers_1 = require("./routers/video-routers");
-const isEqual = (arr1, arr2) => {
-    return arr1.every((value) => arr2.includes(value));
+const isEqual = (arr1) => {
+    return arr1.every((value) => video_routers_1.availableResolutions.includes(value));
 };
 exports.isEqual = isEqual;
 const createVideoValidation = (title, author, resolution) => {
@@ -14,14 +14,18 @@ const createVideoValidation = (title, author, resolution) => {
             field: 'title'
         });
     }
-    if (!(0, exports.isEqual)(resolution, video_routers_1.availableResolutions)) {
+    if (!author || typeof author !== 'string' || !author.trim() || author.length > 20) {
+        errors.push({
+            message: 'invalid author',
+            field: 'author'
+        });
+    }
+    if (!(0, exports.isEqual)(resolution)) {
         errors.push({
             message: 'invalid availableResolutions',
             field: 'availableResolutions'
         });
     }
-    //....
-    // ....
     if (errors.length > 0)
         return errors;
     return null;

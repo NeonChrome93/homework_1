@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteRouters = exports.videoRouters = exports.videos = exports.availableResolutions = void 0;
 const express_1 = require("express");
 const validator_1 = require("../validator");
-exports.availableResolutions = ['144', '240', '360', '480', '720', '1080', '1440', '2160'];
+exports.availableResolutions = ['P144', 'P240', 'P360', 'P480', 'P720', 'P1080', 'P1440', 'P2160'];
 exports.videos = [];
 exports.videoRouters = (0, express_1.Router)({});
 exports.videoRouters.get('/', (req, res) => {
