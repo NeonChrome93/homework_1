@@ -43,6 +43,12 @@ exports.videoRouters.post('/', (req, res) => {
 exports.videoRouters.put('/:id', (req, res) => {
     //дописать по сваггеру
     let video = exports.videos.find(p => p.id === +req.params.id);
+    const errors = (0, validator_1.updateVideoValidation)(req.body.title, req.body.author, req.body.availableResolutions, req.body.canBeDownloaded, req.body.minAgeRestriction, req.body.publicationDate);
+    if (errors) {
+        return res.status(400).send({
+            errorsMessages: errors
+        });
+    }
     //validate params
     if (video) {
         video.title = req.body.title;
@@ -59,16 +65,20 @@ exports.videoRouters.put('/:id', (req, res) => {
         res.sendStatus(404);
     }
 });
+// params, query, body, headers, method
 exports.videoRouters.delete('/:id', (req, res) => {
-    for (let i = 0; exports.videos.length > i; i++) {
-        if (exports.videos[i].id === +req.params.id) {
-            exports.videos.splice(i, 1);
-            res.sendStatus(204);
-            return;
-        }
-        else
-            res.sendStatus(404);
-    }
+    const video = exports.videos.find(v => v.id === +req.params.id);
+    if (!video)
+        return res.sendStatus(404);
+    exports.videos = exports.videos.filter(v => v.id !== video.id);
+    return res.sendStatus(204);
+    // for (let i = 0; videos.length > i; i++) {
+    //     if (videos[i].id === +req.params.id) {
+    //         videos.splice(i, 1)
+    //         res.sendStatus(204)
+    //         return;
+    //     } else res.sendStatus(404)
+    // }
 });
 //второй делит по всем видосам
 exports.deleteRouters = (0, express_1.Router)({});

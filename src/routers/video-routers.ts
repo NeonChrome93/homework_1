@@ -1,5 +1,5 @@
 import {Request, Response, Router} from "express";
-import {createVideoValidation} from "../validator";
+import {createVideoValidation, updateVideoValidation} from "../validator";
 
 export type VideoType = {
     id: number
@@ -59,7 +59,13 @@ videoRouters.post('/', (req: Request, res: Response) => {
 videoRouters.put('/:id', (req: Request, res: Response) => {
     //дописать по сваггеру
     let video = videos.find(p => p.id === +req.params.id)
-
+    const errors = updateVideoValidation(req.body.title, req.body.author, req.body.availableResolutions,
+        req.body.canBeDownloaded, req.body.minAgeRestriction, req.body.publicationDate)
+    if (errors) {
+        return res.status(400).send({
+            errorsMessages: errors
+        })
+    }
     //validate params
 
     if (video) {
@@ -78,12 +84,12 @@ videoRouters.put('/:id', (req: Request, res: Response) => {
     }
 })
 
-// params, query, body, headers
+// params, query, body, headers, method
 
 videoRouters.delete('/:id', (req: Request, res: Response) => {
     const video = videos.find(v => v.id === +req.params.id)
     if(!video) return res.sendStatus(404)
-    videos = videos.filter(v => v.id !== +req.params.id)
+    videos = videos.filter(v => v.id !== video.id)
     return res.sendStatus(204)
 
     // for (let i = 0; videos.length > i; i++) {
