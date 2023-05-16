@@ -80,7 +80,7 @@ export const updateVideoValidation = (title: any, author: any,
     if(typeof  publicationDate !== "string") {
         arrErrors.push({
             message: 'the field  publicationDate must be a string',
-            field: ' publicationDate'
+            field: 'publicationDate'
         })
     }
 
