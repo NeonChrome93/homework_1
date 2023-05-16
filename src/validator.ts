@@ -42,14 +42,14 @@ export const updateVideoValidation = (title: any, author: any,
 
     const arrErrors: ValidationErrorType[] = []
 
-    if (!title || typeof title !== 'string' || !title.trim() || title.length > 40) {
+    if (!title || typeof title !== 'string' ||  title.trim().length > 40) {
         arrErrors.push({
             message: 'invalid title',
             field: 'title'
         })
     }
 
-    if (!author || typeof author !== 'string' || !author.trim() || author.length > 20) {
+    if (!author || typeof author !== 'string' || author.trim().length > 20) {
         arrErrors.push({
             message: 'invalid author',
             field: 'author'

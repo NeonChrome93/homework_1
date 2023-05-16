@@ -58,7 +58,7 @@ videoRouters.post('/', (req: Request, res: Response) => {
 
 videoRouters.put('/:id', (req: Request, res: Response) => {
     //дописать по сваггеру
-    let video = videos.find(p => p.id === +req.params.id)
+
     const errors = updateVideoValidation(req.body.title, req.body.author, req.body.availableResolutions,
         req.body.canBeDownloaded, req.body.minAgeRestriction, req.body.publicationDate)
     if (errors) {
@@ -67,7 +67,7 @@ videoRouters.put('/:id', (req: Request, res: Response) => {
         })
     }
     //validate params
-
+    let video = videos.find(p => p.id === +req.params.id)
     if (video) {
         video.title = req.body.title
         video.author = req.body.author,
