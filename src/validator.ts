@@ -73,7 +73,7 @@ export const updateVideoValidation = (title: any, author: any,
     if(typeof  minAgeRestriction !== "number" || minAgeRestriction > 18 || minAgeRestriction < 1) {
         arrErrors.push({
             message: 'the field  minAgeRestriction must be max 18 and min 1',
-            field: ' minAgeRestriction'
+            field: 'minAgeRestriction'
         })
     }
 
