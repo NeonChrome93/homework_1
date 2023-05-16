@@ -66,7 +66,7 @@ export const updateVideoValidation = (title: any, author: any,
     if((typeof canBeDownloaded !== "boolean" )) {
         arrErrors.push({
             message: 'the field canBeDownloaded must be a boolean',
-            field: 'canBeDownloaded '
+            field: 'canBeDownloaded'
         })
     }
 
